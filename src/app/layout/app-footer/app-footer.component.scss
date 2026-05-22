@@ -1,0 +1,16 @@
+@use '../../../styles/variables' as *;
+
+.app-footer {
+  padding: $space-lg;
+  border-top: 1px solid $color-border;
+  margin-top: auto;
+}
+
+.app-footer__disclaimer {
+  margin: 0;
+  font-size: 0.85rem;
+  color: $color-text-muted;
+  text-align: center;
+  max-width: 720px;
+  margin-inline: auto;
+}

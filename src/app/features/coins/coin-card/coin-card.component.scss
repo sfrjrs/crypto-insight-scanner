@@ -1,0 +1,107 @@
+@use '../../../../styles/variables' as *;
+@use '../../../../styles/mixins' as *;
+
+.coin-card {
+  @include card-surface;
+  padding: $space-lg;
+  display: flex;
+  flex-direction: column;
+  gap: $space-md;
+
+  &--featured {
+    border-color: $color-accent;
+  }
+}
+
+.coin-card__header {
+  display: flex;
+  align-items: center;
+  gap: $space-md;
+}
+
+.coin-card__icon {
+  border-radius: 50%;
+}
+
+.coin-card__meta {
+  flex: 1;
+  min-width: 0;
+}
+
+.coin-card__name {
+  margin: 0;
+  font-size: 1.1rem;
+
+  a {
+    color: $color-text;
+  }
+}
+
+.coin-card__symbol {
+  color: $color-text-muted;
+  font-size: 0.85rem;
+}
+
+.coin-card__score {
+  font-weight: 700;
+  font-size: 1.25rem;
+  padding: $space-xs $space-sm;
+  border-radius: $radius-sm;
+  background: $color-surface-elevated;
+
+  &--high {
+    color: $color-score-high;
+  }
+
+  &--mid {
+    color: $color-score-mid;
+  }
+
+  &--low {
+    color: $color-score-low;
+  }
+}
+
+.coin-card__watch {
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: $color-text-muted;
+  @include focus-ring;
+
+  &--active {
+    color: $color-warning;
+  }
+}
+
+.coin-card__summary {
+  margin: 0;
+  color: $color-text-muted;
+  font-size: 0.9rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.coin-card__stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-sm $space-md;
+  font-size: 0.8rem;
+  color: $color-text-muted;
+}
+
+.coin-card__change--up {
+  color: $color-positive;
+}
+
+.coin-card__change--down {
+  color: $color-negative;
+}
+
+.coin-card__link {
+  font-size: 0.9rem;
+  font-weight: 600;
+}

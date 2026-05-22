@@ -1,0 +1,12 @@
+<header class="app-header">
+  <a class="app-header__brand" routerLink="/">Crypto Utility Scanner</a>
+  <nav class="app-header__nav">
+    <a class="app-header__link" routerLink="/" routerLinkActive="app-header__link--active" [routerLinkActiveOptions]="{ exact: true }">Rankings</a>
+    @if (auth.isAuthenticated()) {
+      <a class="app-header__link" routerLink="/profile" routerLinkActive="app-header__link--active">Profile</a>
+      <button type="button" class="app-header__btn" (click)="auth.signOut()">Sign out</button>
+    } @else {
+      <a class="app-header__link" routerLink="/login" routerLinkActive="app-header__link--active">Sign in</a>
+    }
+  </nav>
+</header>

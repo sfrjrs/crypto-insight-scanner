@@ -1,0 +1,84 @@
+<section class="profile">
+  <h1 class="profile__title">Your preferences</h1>
+
+  <div class="profile__section">
+    <label class="profile__label">Risk tolerance</label>
+    <select
+      class="profile__select"
+      [ngModel]="prefs().riskTolerance"
+      (ngModelChange)="updateRisk($event)"
+      name="risk"
+    >
+      <option value="conservative">Conservative</option>
+      <option value="balanced">Balanced</option>
+      <option value="aggressive">Aggressive</option>
+    </select>
+    <p class="profile__hint">Adjusts how market cap, liquidity, and volatility are weighted in rankings.</p>
+  </div>
+
+  <div class="profile__section">
+    <label class="profile__label">Minimum market cap (USD)</label>
+    <input
+      type="range"
+      min="0"
+      max="1000000000"
+      step="1000000"
+      [ngModel]="prefs().minMarketCapUsd"
+      (ngModelChange)="updateMinCap($event)"
+      name="minCap"
+    />
+    <span>{{ prefs().minMarketCapUsd | compactNumber }}</span>
+  </div>
+
+  <div class="profile__section">
+    <label class="profile__label">Sort by</label>
+    <select
+      class="profile__select"
+      [ngModel]="prefs().sortBy"
+      (ngModelChange)="updateSort($event)"
+      name="sort"
+    >
+      <option value="investScore">Utility score</option>
+      <option value="marketCap">Market cap</option>
+      <option value="volume24h">24h volume</option>
+    </select>
+  </div>
+
+  <div class="profile__section">
+    <span class="profile__label">Enabled categories</span>
+    <div class="profile__categories">
+      @for (cat of categoryOptions; track cat.id) {
+        <label class="profile__chip">
+          <input
+            type="checkbox"
+            [checked]="isCategoryEnabled(cat.id)"
+            (change)="toggleCategory(cat.id)"
+          />
+          {{ cat.label }}
+        </label>
+      }
+    </div>
+  </div>
+
+  <button type="button" class="profile__save" (click)="savePreferences()">
+    @if (saveStatus() === 'saving') { Saving… }
+    @else if (saveStatus() === 'saved') { Saved }
+    @else { Save preferences }
+  </button>
+
+  <section class="profile__watchlist">
+    <h2>Watchlist</h2>
+    @if (watchlistCoins().length === 0) {
+      <p class="profile__empty">Star coins on the rankings page to build your watchlist.</p>
+    } @else {
+      <ul class="profile__list">
+        @for (coin of watchlistCoins(); track coin.id) {
+          <li>
+            <a [routerLink]="['/coin', coin.id]">{{ coin.name }}</a>
+            <span class="profile__score">{{ coin.investScore }}</span>
+          </li>
+        }
+      </ul>
+    }
+  </section>
+</section>

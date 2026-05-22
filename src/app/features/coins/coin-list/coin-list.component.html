@@ -1,0 +1,28 @@
+<section class="coin-list">
+  <header class="coin-list__header">
+    <h1 class="coin-list__title">Utility coin rankings</h1>
+    <p class="coin-list__subtitle">
+      Screened for real-world use cases — RWA, infrastructure, DePIN, payments, and related sectors.
+    </p>
+    @if (lastSyncedLabel()) {
+      <p class="coin-list__sync">Market data updated {{ lastSyncedLabel() }}</p>
+    }
+  </header>
+
+  @if (sortedCoins().length === 0) {
+    <div class="coin-list__empty">
+      <p>No coins in Firestore yet. Run the Cloud Function sync or seed the emulator.</p>
+      <code>cd functions && npm run build && firebase emulators:exec --only functions "..."</code>
+    </div>
+  } @else {
+    <div class="coin-list__grid">
+      @for (coin of sortedCoins(); track coin.id) {
+        <app-coin-card
+          [coin]="coin"
+          [watched]="watchlist().has(coin.id)"
+          (watchToggle)="toggleWatch(coin.id)"
+        />
+      }
+    </div>
+  }
+</section>

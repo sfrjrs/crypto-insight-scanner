@@ -1,0 +1,91 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.profile {
+  @include card-surface;
+  padding: $space-xl;
+  max-width: 640px;
+}
+
+.profile__title {
+  margin-top: 0;
+}
+
+.profile__section {
+  margin-bottom: $space-lg;
+}
+
+.profile__label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: $space-sm;
+}
+
+.profile__hint {
+  font-size: 0.85rem;
+  color: $color-text-muted;
+  margin: $space-sm 0 0;
+}
+
+.profile__select {
+  width: 100%;
+  padding: $space-sm;
+  background: $color-bg;
+  border: 1px solid $color-border;
+  color: $color-text;
+  border-radius: $radius-sm;
+}
+
+.profile__categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-sm;
+}
+
+.profile__chip {
+  display: flex;
+  align-items: center;
+  gap: $space-xs;
+  padding: $space-xs $space-sm;
+  background: $color-surface-elevated;
+  border-radius: $radius-sm;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.profile__save {
+  padding: $space-md $space-lg;
+  background: $color-accent;
+  color: white;
+  border: none;
+  border-radius: $radius-sm;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: $space-xl;
+}
+
+.profile__watchlist h2 {
+  margin-bottom: $space-md;
+}
+
+.profile__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    display: flex;
+    justify-content: space-between;
+    padding: $space-sm 0;
+    border-bottom: 1px solid $color-border;
+  }
+}
+
+.profile__score {
+  color: $color-accent;
+  font-weight: 600;
+}
+
+.profile__empty {
+  color: $color-text-muted;
+}

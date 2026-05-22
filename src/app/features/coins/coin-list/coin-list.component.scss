@@ -1,0 +1,41 @@
+@use '../../../../styles/variables' as *;
+@use '../../../../styles/mixins' as *;
+
+.coin-list__header {
+  margin-bottom: $space-xl;
+}
+
+.coin-list__title {
+  margin: 0 0 $space-sm;
+  font-size: 1.75rem;
+}
+
+.coin-list__subtitle {
+  margin: 0;
+  color: $color-text-muted;
+}
+
+.coin-list__sync {
+  margin: $space-sm 0 0;
+  font-size: 0.85rem;
+  color: $color-text-muted;
+}
+
+.coin-list__grid {
+  display: grid;
+  gap: $space-lg;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+}
+
+.coin-list__empty {
+  @include card-surface;
+  padding: $space-xl;
+  color: $color-text-muted;
+
+  code {
+    display: block;
+    margin-top: $space-md;
+    font-size: 0.8rem;
+    word-break: break-all;
+  }
+}

@@ -1,0 +1,146 @@
+@use '../../../../styles/variables' as *;
+@use '../../../../styles/mixins' as *;
+
+.coin-detail__back {
+  display: inline-block;
+  margin-bottom: $space-lg;
+}
+
+.coin-detail {
+  @include card-surface;
+  padding: $space-xl;
+}
+
+.coin-detail__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: $space-md;
+  margin-bottom: $space-lg;
+}
+
+.coin-detail__icon {
+  border-radius: 50%;
+}
+
+.coin-detail__title {
+  margin: 0;
+}
+
+.coin-detail__score {
+  margin: $space-xs 0 0;
+  color: $color-text-muted;
+}
+
+.coin-detail__watch {
+  margin-left: auto;
+  padding: $space-sm $space-md;
+  border-radius: $radius-sm;
+  border: 1px solid $color-border;
+  background: $color-surface-elevated;
+  color: $color-text;
+  cursor: pointer;
+
+  &--active {
+    border-color: $color-warning;
+    color: $color-warning;
+  }
+}
+
+.coin-detail__summary {
+  color: $color-text-muted;
+  line-height: 1.6;
+}
+
+.coin-detail__categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-sm;
+  margin: $space-lg 0;
+}
+
+.coin-detail__chip {
+  background: $color-surface-elevated;
+  padding: $space-xs $space-sm;
+  border-radius: $radius-sm;
+  font-size: 0.8rem;
+}
+
+.coin-detail__metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: $space-md;
+  margin-bottom: $space-xl;
+}
+
+.coin-detail__metric-label {
+  display: block;
+  font-size: 0.75rem;
+  color: $color-text-muted;
+}
+
+.coin-detail__breakdown h2,
+.coin-detail__pros h2,
+.coin-detail__cons h2 {
+  font-size: 1.1rem;
+  margin-bottom: $space-md;
+}
+
+.coin-detail__bar-row {
+  display: grid;
+  grid-template-columns: 100px 1fr 40px;
+  align-items: center;
+  gap: $space-sm;
+  margin-bottom: $space-sm;
+}
+
+.coin-detail__bar-track {
+  height: 8px;
+  background: $color-surface-elevated;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.coin-detail__bar-fill {
+  height: 100%;
+  background: $color-accent;
+}
+
+.coin-detail__insights {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $space-xl;
+  margin-top: $space-xl;
+
+  @media (max-width: 700px) {
+    grid-template-columns: 1fr;
+  }
+
+  ul {
+    margin: 0;
+    padding-left: $space-lg;
+    color: $color-text-muted;
+  }
+
+  li + li {
+    margin-top: $space-sm;
+  }
+}
+
+.coin-detail__pros li::marker {
+  color: $color-positive;
+}
+
+.coin-detail__cons li::marker {
+  color: $color-negative;
+}
+
+.coin-detail__external {
+  display: inline-block;
+  margin-top: $space-xl;
+  font-weight: 600;
+}
+
+.coin-detail__loading {
+  color: $color-text-muted;
+}

@@ -1,0 +1,41 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $space-md $space-lg;
+  background: $color-surface;
+  border-bottom: 1px solid $color-border;
+}
+
+.app-header__brand {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: $color-text;
+}
+
+.app-header__nav {
+  display: flex;
+  align-items: center;
+  gap: $space-md;
+}
+
+.app-header__link {
+  color: $color-text-muted;
+
+  &--active {
+    color: $color-accent;
+  }
+}
+
+.app-header__btn {
+  background: transparent;
+  border: 1px solid $color-border;
+  color: $color-text;
+  padding: $space-xs $space-md;
+  border-radius: $radius-sm;
+  cursor: pointer;
+  @include focus-ring;
+}

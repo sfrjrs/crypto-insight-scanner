@@ -1,0 +1,86 @@
+@use '../../../../styles/variables' as *;
+@use '../../../../styles/mixins' as *;
+
+.login {
+  @include card-surface;
+  max-width: 420px;
+  margin: 0 auto;
+  padding: $space-xl;
+}
+
+.login__title {
+  margin: 0 0 $space-sm;
+}
+
+.login__subtitle {
+  margin: 0 0 $space-lg;
+  color: $color-text-muted;
+}
+
+.login__google {
+  width: 100%;
+  padding: $space-md;
+  border: none;
+  border-radius: $radius-sm;
+  background: $color-accent;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  @include focus-ring;
+}
+
+.login__divider {
+  text-align: center;
+  margin: $space-lg 0;
+  color: $color-text-muted;
+  font-size: 0.85rem;
+}
+
+.login__field {
+  display: block;
+  margin-bottom: $space-md;
+
+  span {
+    display: block;
+    font-size: 0.85rem;
+    color: $color-text-muted;
+    margin-bottom: $space-xs;
+  }
+
+  input {
+    width: 100%;
+    padding: $space-sm $space-md;
+    border: 1px solid $color-border;
+    border-radius: $radius-sm;
+    background: $color-bg;
+    color: $color-text;
+  }
+}
+
+.login__actions {
+  display: flex;
+  gap: $space-sm;
+  margin-top: $space-lg;
+}
+
+.login__btn {
+  flex: 1;
+  padding: $space-sm $space-md;
+  border-radius: $radius-sm;
+  border: 1px solid $color-border;
+  background: $color-surface-elevated;
+  color: $color-text;
+  cursor: pointer;
+
+  &--primary {
+    background: $color-accent;
+    border-color: $color-accent;
+    color: white;
+  }
+}
+
+.login__error {
+  color: $color-negative;
+  margin-top: $space-md;
+  font-size: 0.9rem;
+}

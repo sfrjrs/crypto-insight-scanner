@@ -1,0 +1,96 @@
+<a class="coin-detail__back" routerLink="/">← Back to rankings</a>
+
+@if (coin(); as c) {
+  <article class="coin-detail">
+    <header class="coin-detail__header">
+      <img class="coin-detail__icon" [src]="c.image" [alt]="c.name" width="56" height="56" />
+      <div>
+        <h1 class="coin-detail__title">{{ c.name }} ({{ c.symbol | uppercase }})</h1>
+        <p class="coin-detail__score">Utility score: <strong>{{ c.investScore }}</strong>/100</p>
+      </div>
+      @if (auth.isAuthenticated()) {
+        <button
+          type="button"
+          class="coin-detail__watch"
+          [class.coin-detail__watch--active]="watchlist().has(c.id)"
+          (click)="toggleWatch(c.id)"
+        >
+          {{ watchlist().has(c.id) ? 'On watchlist' : 'Add to watchlist' }}
+        </button>
+      }
+    </header>
+
+    <p class="coin-detail__summary">{{ c.summary }}</p>
+
+    <div class="coin-detail__categories">
+      @for (cat of c.categories; track cat) {
+        <span class="coin-detail__chip">{{ categoryLabel(cat) }}</span>
+      }
+    </div>
+
+    <section class="coin-detail__metrics">
+      <div class="coin-detail__metric">
+        <span class="coin-detail__metric-label">Price</span>
+        <span>${{ c.price | number: '1.2-6' }}</span>
+      </div>
+      <div class="coin-detail__metric">
+        <span class="coin-detail__metric-label">Market cap</span>
+        <span>{{ c.marketCap | compactNumber }}</span>
+      </div>
+      <div class="coin-detail__metric">
+        <span class="coin-detail__metric-label">24h volume</span>
+        <span>{{ c.volume24h | compactNumber }}</span>
+      </div>
+      <div class="coin-detail__metric">
+        <span class="coin-detail__metric-label">24h / 7d / 30d</span>
+        <span>{{ c.change24h | percentChange }} / {{ c.change7d | percentChange }} / {{ c.change30d | percentChange }}</span>
+      </div>
+      <div class="coin-detail__metric">
+        <span class="coin-detail__metric-label">Community sentiment</span>
+        <span>{{ c.communitySentimentUpPct | number: '1.0-0' }}% positive</span>
+      </div>
+      <div class="coin-detail__metric">
+        <span class="coin-detail__metric-label">Developer score</span>
+        <span>{{ c.developerScore }}/100</span>
+      </div>
+    </section>
+
+    <section class="coin-detail__breakdown">
+      <h2>Score breakdown</h2>
+      @for (item of breakdownEntries(c); track item.key) {
+        <div class="coin-detail__bar-row">
+          <span class="coin-detail__bar-label">{{ item.key }}</span>
+          <div class="coin-detail__bar-track">
+            <div class="coin-detail__bar-fill" [style.width.%]="item.value"></div>
+          </div>
+          <span class="coin-detail__bar-value">{{ item.value }}</span>
+        </div>
+      }
+    </section>
+
+    <div class="coin-detail__insights">
+      <section class="coin-detail__pros">
+        <h2>Pros</h2>
+        <ul>
+          @for (pro of c.pros; track pro) {
+            <li>{{ pro }}</li>
+          }
+        </ul>
+      </section>
+      <section class="coin-detail__cons">
+        <h2>Cons</h2>
+        <ul>
+          @for (con of c.cons; track con) {
+            <li>{{ con }}</li>
+          }
+        </ul>
+      </section>
+    </div>
+
+    <a class="coin-detail__external" [href]="c.coingeckoUrl" target="_blank" rel="noopener noreferrer">
+      View on CoinGecko ↗
+    </a>
+  </article>
+} @else {
+  <p class="coin-detail__loading">Loading coin data…</p>
+}

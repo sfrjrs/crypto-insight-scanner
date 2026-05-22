@@ -1,0 +1,21 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "coins",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "investScore", "order": "DESCENDING" },
+        { "fieldPath": "marketCap", "order": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "coins",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "categories", "arrayConfig": "CONTAINS" },
+        { "fieldPath": "investScore", "order": "DESCENDING" }
+      ]
+    }
+  ],
+  "fieldOverrides": []
+}

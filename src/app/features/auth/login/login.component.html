@@ -1,0 +1,29 @@
+<section class="login">
+  <h1 class="login__title">Sign in</h1>
+  <p class="login__subtitle">Save watchlists and customize risk-based rankings.</p>
+
+  <button type="button" class="login__google" (click)="signInGoogle()" [disabled]="loading()">
+    Continue with Google
+  </button>
+
+  <div class="login__divider">or email</div>
+
+  <form class="login__form" (ngSubmit)="signInEmail()">
+    <label class="login__field">
+      <span>Email</span>
+      <input type="email" [(ngModel)]="email" name="email" required autocomplete="email" />
+    </label>
+    <label class="login__field">
+      <span>Password</span>
+      <input type="password" [(ngModel)]="password" name="password" required autocomplete="current-password" />
+    </label>
+    <div class="login__actions">
+      <button type="submit" class="login__btn login__btn--primary" [disabled]="loading()">Sign in</button>
+      <button type="button" class="login__btn" (click)="registerEmail()" [disabled]="loading()">Create account</button>
+    </div>
+  </form>
+
+  @if (error()) {
+    <p class="login__error">{{ error() }}</p>
+  }
+</section>

@@ -1,0 +1,31 @@
+<article class="coin-card" [class.coin-card--featured]="coin().investScore >= 70">
+  <div class="coin-card__header">
+    <img class="coin-card__icon" [src]="coin().image" [alt]="coin().name" width="40" height="40" />
+    <div class="coin-card__meta">
+      <h2 class="coin-card__name">
+        <a [routerLink]="['/coin', coin().id]">{{ coin().name }}</a>
+      </h2>
+      <span class="coin-card__symbol">{{ coin().symbol | uppercase }}</span>
+    </div>
+    <span class="coin-card__score" [class]="scoreModifier()">{{ coin().investScore }}</span>
+    <button
+      type="button"
+      class="coin-card__watch"
+      [class.coin-card__watch--active]="watched()"
+      (click)="watchToggle.emit()"
+      [attr.aria-label]="watched() ? 'Remove from watchlist' : 'Add to watchlist'"
+    >
+      ★
+    </button>
+  </div>
+  <p class="coin-card__summary">{{ coin().summary }}</p>
+  <div class="coin-card__stats">
+    <span>Mkt cap {{ coin().marketCap | compactNumber }}</span>
+    <span>Vol {{ coin().volume24h | compactNumber }}</span>
+    <span [class.coin-card__change--up]="coin().change7d >= 0" [class.coin-card__change--down]="coin().change7d < 0">
+      7d {{ coin().change7d | percentChange }}
+    </span>
+    <span>Sentiment {{ coin().communitySentimentUpPct | number: '1.0-0' }}%</span>
+  </div>
+  <a class="coin-card__link" [routerLink]="['/coin', coin().id]">View analysis →</a>
+</article>
