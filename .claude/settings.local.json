@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:api.coingecko.com)",
+      "WebFetch(domain:docs.coingecko.com)",
+      "WebFetch(domain:www.coingecko.com)"
+    ]
+  }
+}

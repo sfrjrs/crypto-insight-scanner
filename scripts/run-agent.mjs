@@ -24,7 +24,9 @@ const COINGECKO_BASE = process.env.COINGECKO_API_KEY
 
 const COINGECKO_HEADERS = process.env.COINGECKO_API_KEY
   ? { 'x-cg-pro-api-key': process.env.COINGECKO_API_KEY, Accept: 'application/json' }
-  : { Accept: 'application/json' };
+  : process.env.COINGECKO_DEMO_API_KEY
+    ? { 'x-cg-demo-api-key': process.env.COINGECKO_DEMO_API_KEY, Accept: 'application/json' }
+    : { Accept: 'application/json' };
 
 const PER_CATEGORY = 20;     // coins to fetch per category
 const REQUEST_DELAY_MS = 2_500; // stay comfortably under 30 req/min free-tier limit
@@ -37,11 +39,9 @@ const ALLOWED_CATEGORY_IDS = [
   'infrastructure',
   'depin',
   'decentralized-finance-defi',
-  'payment',
-  'enterprise-solutions',
+  'payment-solutions',
   'business-services',
   'energy',
-  'supply-chain',
   'healthcare',
   'insurance',
   'legal',
@@ -57,11 +57,9 @@ const CATEGORY_LABELS = {
   infrastructure: 'Infrastructure',
   depin: 'DePIN',
   'decentralized-finance-defi': 'DeFi',
-  payment: 'Payments',
-  'enterprise-solutions': 'Enterprise',
+  'payment-solutions': 'Payments',
   'business-services': 'Business Services',
   energy: 'Energy',
-  'supply-chain': 'Supply Chain',
   healthcare: 'Healthcare',
   insurance: 'Insurance',
   legal: 'Legal',
@@ -89,10 +87,11 @@ async function cgFetch(path, retries = 3) {
         await sleep(wait);
         continue;
       }
+      if (res.status === 400) throw Object.assign(new Error(`CoinGecko 400 on ${path}`), { skipRetry: true });
       if (!res.ok) throw new Error(`CoinGecko ${res.status} on ${path}`);
       return res.json();
     } catch (err) {
-      if (attempt === retries - 1) throw err;
+      if (err.skipRetry || attempt === retries - 1) throw err;
       await sleep(2_000 * (attempt + 1));
     }
   }

@@ -11,8 +11,8 @@
 
   @if (sortedCoins().length === 0) {
     <div class="coin-list__empty">
-      <p>No coins in Firestore yet. Run the Cloud Function sync or seed the emulator.</p>
-      <code>cd functions && npm run build && firebase emulators:exec --only functions "..."</code>
+      <p>No coin data available yet.</p>
+      <p>Run the agent to populate the database: <code>npm run agent</code></p>
     </div>
   } @else {
     <div class="coin-list__grid">

@@ -45,4 +45,5 @@ Thumbs.db
 
 # Environment variables (never commit secrets)
 .env
-crypto-insight-scanner-firebase-adminsdk-fbsvc-b70aaa11d7.json
+.env.example
+service-account.json
